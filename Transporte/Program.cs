@@ -81,11 +81,6 @@ class Program
 
     }
 
-    static void VoguelProblem()
-    {
-      
-    }
-
     // Função para resolver o Problema de Transporte
     static SolucaoParcial ResolverProblemaTransporte(List<List<int>> custos, List<int> oferta, List<int> demanda)
     {
