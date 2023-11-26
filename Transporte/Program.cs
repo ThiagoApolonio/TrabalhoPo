@@ -4,11 +4,86 @@ using System.Linq;
 
 class Program
 {
-    // Estrutura para representar uma solução parcial
+    
+    //Grupo Thiago Matos de Apolonio E01565, Lucas, Marcos,Ezequiel
     struct SolucaoParcial
     {
         public int[,] Transporte;
         public int CustoTotal;
+    }
+    // Main ou Index
+    static void Main()
+    {
+        // Definindo os dados do problema
+        List<List<int>> custos = new List<List<int>>
+        {
+            new List<int> {25, 20, 30},
+            new List<int> {30, 25, 25},
+            new List<int> {20, 15, 23}
+        };
+
+        List<int> oferta = new List<int> { 2000, 1500, 1500 };
+        List<int> demanda = new List<int> { 2000, 2000, 1000 };
+
+        // Resolvendo o Problema de Transporte com Alocação Mínima
+        SolucaoParcial solucaoAlocacaoMinima = ResolverProblemaTransporte(custos, oferta, demanda);
+
+        // Imprimindo a tabela de transporte da solução com Alocação Mínima
+        Console.WriteLine("Alocação Mínima:");
+        ImprimirTabelaTransporte(solucaoAlocacaoMinima.Transporte);
+        Console.WriteLine($"Custo Total: {solucaoAlocacaoMinima.CustoTotal}");
+        Console.WriteLine();
+
+        // Resolvendo o Problema de Transporte com Canto Noroeste
+        SolucaoParcial solucaoCantoNoroeste = CantoNoroeste(custos, oferta, demanda);
+
+        // Imprimindo a tabela de transporte da solução com Canto Noroeste
+        Console.WriteLine("Canto Noroeste:");
+        ImprimirTabelaTransporte(solucaoCantoNoroeste.Transporte);
+        Console.WriteLine($"Custo Total: {solucaoCantoNoroeste.CustoTotal}");
+        Console.WriteLine();
+
+       
+  // Definindo os dados do problema
+        List<List<int>> custosVoguel = new List<List<int>>
+        {
+            new List<int> {25, 20, 30},
+            new List<int> {30, 25, 25},
+            new List<int> {20, 15, 23}
+        };
+
+        List<int> ofertaVoguel = new List<int> { 2000, 1500, 1500 };
+        List<int> demandaVoguel = new List<int> { 2000, 2000, 1000 };
+        // Resolvendo o Problema de Transporte com Aproximação de Vogel
+        SolucaoParcial solucaoAproximacaoVogel = AproximacaoVogel(custosVoguel, ofertaVoguel, demandaVoguel);
+
+        // Imprimindo a tabela de transporte da solução com Aproximação de Vogel
+        Console.WriteLine("Aproximação de Vogel:");
+        ImprimirTabelaTransporte(solucaoAproximacaoVogel.Transporte);
+        Console.WriteLine($"Custo Total: {solucaoAproximacaoVogel.CustoTotal}");
+        Console.WriteLine();
+
+        int menorCusto = Math.Min(solucaoAlocacaoMinima.CustoTotal, Math.Min(solucaoCantoNoroeste.CustoTotal, solucaoAproximacaoVogel.CustoTotal));
+
+        if (menorCusto == solucaoAlocacaoMinima.CustoTotal)
+        {
+            Console.WriteLine("Alocação Mínima é a melhor forma para o transporte.");
+        }
+        else if (menorCusto == solucaoCantoNoroeste.CustoTotal)
+        {
+            Console.WriteLine("Canto Noroeste é a melhor forma para o transporte.");
+        }
+        else
+        {
+            Console.WriteLine("Aproximação de Vogel é a melhor forma para o transporte.");
+        }
+
+
+    }
+
+    static void VoguelProblem()
+    {
+      
     }
 
     // Função para resolver o Problema de Transporte
@@ -135,19 +210,21 @@ class Program
 
         int[,] transporteInicial = new int[m, n];
 
-        while (oferta.Exists(val => val > 0) && demanda.Exists(val => val > 0))
+        // Enquanto houver oferta ou demanda não atendida
+        while (oferta.Any(val => val > 0) && demanda.Any(val => val > 0))
         {
             int i = -1, j = -1;
             int maxDifRow = -1, maxDifCol = -1;
 
+            // Calcular as penalidades para as linhas
             for (int row = 0; row < m; ++row)
             {
                 if (oferta[row] > 0)
                 {
                     List<int> rowCosts = custos[row];
-                    int minCost1 = rowCosts.Min();
-                    rowCosts.Remove(minCost1);
-                    int minCost2 = rowCosts.Min();
+                    List<int> sortedRowCosts = rowCosts.OrderBy(c => c).ToList();
+                    int minCost1 = sortedRowCosts[0];
+                    int minCost2 = sortedRowCosts[1];
 
                     int dif = minCost2 - minCost1;
 
@@ -159,6 +236,7 @@ class Program
                 }
             }
 
+            // Calcular as penalidades para as colunas
             for (int col = 0; col < n; ++col)
             {
                 if (demanda[col] > 0)
@@ -195,43 +273,8 @@ class Program
         return new SolucaoParcial { Transporte = transporteInicial, CustoTotal = custoInicial };
     }
 
-    static void Main()
-    {
-        // Definindo os dados do problema
-        List<List<int>> custos = new List<List<int>>
-        {
-            new List<int> {3, 2, 7},
-            new List<int> {2, 4, 5},
-            new List<int> {1, 3, 2}
-        };
 
-        List<int> oferta = new List<int> { 100, 150, 200 };
-        List<int> demanda = new List<int> { 120, 80, 170 };
 
-        // Resolvendo o Problema de Transporte com Alocação Mínima
-        SolucaoParcial solucaoAlocacaoMinima = ResolverProblemaTransporte(custos, oferta, demanda);
 
-        // Imprimindo a tabela de transporte da solução com Alocação Mínima
-        Console.WriteLine("Alocação Mínima:");
-        ImprimirTabelaTransporte(solucaoAlocacaoMinima.Transporte);
-        Console.WriteLine($"Custo Total: {solucaoAlocacaoMinima.CustoTotal}");
-        Console.WriteLine();
-
-        // Resolvendo o Problema de Transporte com Canto Noroeste
-        SolucaoParcial solucaoCantoNoroeste = CantoNoroeste(custos, oferta, demanda);
-
-        // Imprimindo a tabela de transporte da solução com Canto Noroeste
-        Console.WriteLine("Canto Noroeste:");
-        ImprimirTabelaTransporte(solucaoCantoNoroeste.Transporte);
-        Console.WriteLine($"Custo Total: {solucaoCantoNoroeste.CustoTotal}");
-        Console.WriteLine();
-
-        // Resolvendo o Problema de Transporte com Aproximação de Vogel
-        SolucaoParcial solucaoAproximacaoVogel = AproximacaoVogel(custos, oferta, demanda);
-
-        // Imprimindo a tabela de transporte da solução com Aproximação de Vogel
-        Console.WriteLine("Aproximação de Vogel:");
-        ImprimirTabelaTransporte(solucaoAproximacaoVogel.Transporte);
-        Console.WriteLine($"Custo Total: {solucaoAproximacaoVogel.CustoTotal}");
-    }
 }
+//// Codigo Feito Por Thiago Matos De Apolonio  
