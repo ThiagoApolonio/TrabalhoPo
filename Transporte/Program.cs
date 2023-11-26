@@ -4,8 +4,8 @@ using System.Linq;
 
 class Program
 {
-    
-    //Grupo Thiago Matos de Apolonio E01565, Lucas, Marcos,Ezequiel
+
+
     struct SolucaoParcial
     {
         public int[,] Transporte;
@@ -17,13 +17,13 @@ class Program
         // Definindo os dados do problema
         List<List<int>> custos = new List<List<int>>
         {
-            new List<int> {25, 20, 30},
-            new List<int> {30, 25, 25},
-            new List<int> {20, 15, 23}
+           new List<int> {5, 7, 4, 8},
+            new List<int> {6, 6, 3, 9},
+            new List<int> {8, 5, 2, 7}
         };
 
-        List<int> oferta = new List<int> { 2000, 1500, 1500 };
-        List<int> demanda = new List<int> { 2000, 2000, 1000 };
+        List<int> oferta = new List<int> { 150, 200, 180 };
+        List<int> demanda = new List<int> { 120, 180, 150, 100 };
 
         // Resolvendo o Problema de Transporte com Alocação Mínima
         SolucaoParcial solucaoAlocacaoMinima = ResolverProblemaTransporte(custos, oferta, demanda);
@@ -43,17 +43,17 @@ class Program
         Console.WriteLine($"Custo Total: {solucaoCantoNoroeste.CustoTotal}");
         Console.WriteLine();
 
-       
-  // Definindo os dados do problema
+
+        // Definindo os dados do problema
         List<List<int>> custosVoguel = new List<List<int>>
         {
-            new List<int> {25, 20, 30},
-            new List<int> {30, 25, 25},
-            new List<int> {20, 15, 23}
+            new List<int> {5, 7, 4, 8},
+            new List<int> {6, 6, 3, 9},
+            new List<int> {8, 5, 2, 7}
         };
 
-        List<int> ofertaVoguel = new List<int> { 2000, 1500, 1500 };
-        List<int> demandaVoguel = new List<int> { 2000, 2000, 1000 };
+        List<int> ofertaVoguel = new List<int> { 150, 200, 180 };
+        List<int> demandaVoguel = new List<int> { 120, 180, 150, 100 };
         // Resolvendo o Problema de Transporte com Aproximação de Vogel
         SolucaoParcial solucaoAproximacaoVogel = AproximacaoVogel(custosVoguel, ofertaVoguel, demandaVoguel);
 
@@ -198,6 +198,7 @@ class Program
         return new SolucaoParcial { Transporte = transporteInicial, CustoTotal = custoInicial };
     }
 
+    // Função para encontrar uma solução inicial usando o método de Aproximação de Vogel
     // Função para encontrar uma solução inicial usando o método de Aproximação de Vogel
     static SolucaoParcial AproximacaoVogel(List<List<int>> custos, List<int> oferta, List<int> demanda)
     {
