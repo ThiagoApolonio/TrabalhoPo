@@ -1,10 +1,17 @@
-﻿using System;
+﻿/*
+ * 
+ * Alunos: 
+ *      - Ezequiel Abreu - e02113
+ *      - Lucas carvalho Santos - e01712 
+ *      - Marcos Vinícius Fonseca Siuves - e01613
+ *      - Thiago Matos De Apolonio  -  E01565
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 class Program
 {
-
 
     struct SolucaoParcial
     {
@@ -14,6 +21,9 @@ class Program
     // Main ou Index
     static void Main()
     {
+
+        Console.WriteLine("Resolução do problema do transporte: ");
+
         // Definindo os dados do problema
         List<List<int>> custos = new List<List<int>>
         {
@@ -199,7 +209,6 @@ class Program
     }
 
     // Função para encontrar uma solução inicial usando o método de Aproximação de Vogel
-    // Função para encontrar uma solução inicial usando o método de Aproximação de Vogel
     static SolucaoParcial AproximacaoVogel(List<List<int>> custos, List<int> oferta, List<int> demanda)
     {
         int m = oferta.Count;    // Número de fontes
@@ -270,8 +279,4 @@ class Program
         return new SolucaoParcial { Transporte = transporteInicial, CustoTotal = custoInicial };
     }
 
-
-
-
 }
-//// Codigo Feito Por Thiago Matos De Apolonio  
