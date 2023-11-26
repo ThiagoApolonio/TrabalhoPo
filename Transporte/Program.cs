@@ -63,6 +63,7 @@ class Program
         Console.WriteLine($"Custo Total: {solucaoAproximacaoVogel.CustoTotal}");
         Console.WriteLine();
 
+        // Observo o menor valor para Eleger o melhor custo 
         int menorCusto = Math.Min(solucaoAlocacaoMinima.CustoTotal, Math.Min(solucaoCantoNoroeste.CustoTotal, solucaoAproximacaoVogel.CustoTotal));
 
         if (menorCusto == solucaoAlocacaoMinima.CustoTotal)
