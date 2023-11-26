@@ -42,7 +42,7 @@ De C para Z: 2
 De C para W: 7
 
 ### Saída: 
-![Exemplo_output_do_código](assets\images\problema_de_transporte.jpg)
+![Exemplo_output_do_código](assets/images/problema_de_transporte.jpg)
 
 ### Nomes dos integrantes do grupo:
 Thiago, Marcos, Lucas e Ezequiel
