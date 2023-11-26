@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\MeuProjeto\\Transporte\\Transporte\\Transporte.csproj",
+      "projectUniqueName": "C:\\Projetos\\MeuProjeto\\TrabalhoPo\\Transporte\\Transporte.csproj",
       "projectName": "Transporte",
-      "projectPath": "C:\\Projetos\\MeuProjeto\\Transporte\\Transporte\\Transporte.csproj",
+      "projectPath": "C:\\Projetos\\MeuProjeto\\TrabalhoPo\\Transporte\\Transporte.csproj",
       "packagesPath": "C:\\Users\\ThiagoDesenv\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\MeuProjeto\\Transporte\\Transporte\\obj\\",
+      "outputPath": "C:\\Projetos\\MeuProjeto\\TrabalhoPo\\Transporte\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
